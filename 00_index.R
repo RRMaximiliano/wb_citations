@@ -35,3 +35,17 @@ df_all <- df %>%
 
 write_rds(df_all, here(onedrive, "data", "citations.rds"))
 write_csv(df_all, here(onedrive, "data", "citations.csv")) 
+
+
+# Citation history --------------------------------------------------------
+
+cites_hist <- ids %>% 
+  mutate(
+    history = map(id, ~ get_citation_history(.))
+  )
+
+cites_hist <- cites_hist %>% 
+  unnest(history)
+
+write_rds(df_all, here(onedrive, "data", "cites_hist.rds")
+write_csv(df_all, here(onedrive, "data", "cites_hist.csv")  

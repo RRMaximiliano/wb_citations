@@ -1,0 +1,20 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# World Bank Development Research Group Google Scholar Citations
+
+```{r, echo = FALSE}
+knitr::include_graphics("figs/top_20.png")
+knitr::include_graphics("figs/team_citations.png")
+knitr::include_graphics("figs/top_5_cites_history.png")
+```
