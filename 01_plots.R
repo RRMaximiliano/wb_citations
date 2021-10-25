@@ -3,6 +3,7 @@
 
 library(hrbrthemes)
 library(tidyverse)
+library(wesanderson)
 
 # Plot --------------------------------------------------------------------
 df_all <- read_rds("data/citations.rds")
@@ -28,7 +29,6 @@ df_all %>%
     title = "Top 20 authors most cited at DECRG"
   ) + 
   theme_ipsum_rc()
-
 
 ggsave(
   here::here("figs", "top_20.png"),
@@ -61,3 +61,29 @@ ggsave(
   dpi = 320, height = 12, width = 20, scale = 0.7, bg = "white"
 )
 
+
+# Cites History -----------------------------------------------------------
+
+cites_hist %>% 
+  filter(main %in% c("Michael Woolcock", "Klaus Deininger", "David McKenzie", "Leora Klapper", "Sergio Schmukler")) %>% 
+  ggplot(
+    aes(x = year, y = cites, group = main, color = main)
+  ) + 
+  geom_line() +
+  labs(
+    x = "Year",
+    y = "Citations",
+    title = "Citation history of the Top 5 most cited authors at DECRG",
+    color = ""
+  ) + 
+  scale_color_manual(values = wes_palette("Zissou1", 5)) + 
+  theme_ipsum_rc() + 
+  theme(
+    legend.position = "top",
+    legend.text = element_text(size = rel(1.1))
+  )
+
+ggsave(
+  here::here("figs", "top_5_cites_history.png"),
+  dpi = 320, height = 12, width = 20, scale = 0.7, bg = "white"
+)
