@@ -1,19 +1,31 @@
 
 # Load data ---------------------------------------------------------------
+packages <- 
+  c(
+    "scholar",
+    "tidyverse",
+    "here"
+    )
 
-library(scholar)
-library(tidyverse)
+pacman::p_load(packages,
+               character.only = TRUE)
+
+onedrive <- "C:/Users/wb501238/OneDrive - WBG/DIME Analytics/DEC Publications"
 
 # Read IDs ----------------------------------------------------------------
-ids <- read_csv("data/authors.csv")
-ids <- filter(ids, !is.na(id)) %>% 
-  rename(main = author)
+ids <- read_csv(here(onedrive, 
+                     "data", 
+                     "decrg_staff.csv")) %>%
+  select(-title)
+
+ids <- filter(ids, !is.na(scholar_id)) %>% 
+  rename(main = full_name)
 
 # Get data ----------------------------------------------------------------
 
 df <- ids %>% 
   mutate(
-    data = map(id, ~ get_publications(.))
+    data = map(scholar_id, ~ get_publications(.))
   )
 
 df_all <- df %>% 
@@ -21,5 +33,5 @@ df_all <- df %>%
 
 # Save data ---------------------------------------------------------------
 
-write_rds(df_all, "data/citations.rds")
-write_csv(df_all, "data/citations.csv")  
+write_rds(df_all, here(onedrive, "data", "citations.rds"))
+write_csv(df_all, here(onedrive, "data", "citations.csv")) 
