@@ -11,8 +11,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-# wb_citations
+# World Bank Development Research Group Google Scholar Citations
 
 ```{r, echo = FALSE}
 knitr::include_graphics("figs/top_20.png")
+knitr::include_graphics("figs/team_citations.png")
 ```

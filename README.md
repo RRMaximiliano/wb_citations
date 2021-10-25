@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# wb_citations
+# World Bank Development Research Group Google Scholar Citations
 
-![](figs/top_20.png)<!-- -->
+![](figs/top_20.png)<!-- -->![](figs/team_citations.png)<!-- -->
